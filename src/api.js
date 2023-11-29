@@ -43,20 +43,28 @@ export class JoblyApi {
     return res.company;
   }
 
+  /** Get all Companies in db */
+
   static async getAllCompanies() {
     let res = await this.request(`companies/`);
     return res;
   }
+
+    /** Get all Jobs in db */
 
   static async getAllJobs() {
     let res = await this.request(`jobs/`);
     return res;
   }
 
+   /** Find all companies which include name-string in name */
+
   static async findAllCompanies(name) {
     let res = await this.request(`companies/`,{name: name});
     return res;
   }
+
+  /** Find all companies which include title-string in title */
 
   static async findAllJobs(title) {
     let res = await this.request(`jobs/`,{title: title});

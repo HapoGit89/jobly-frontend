@@ -11,7 +11,7 @@ function CompanyCard ({company}){
       >
         <CardBody>
           <CardTitle tag="h5">
-            {company.name}
+            <a href={`companies/${company.handle}`}>{company.name}</a>
           </CardTitle>
           <CardSubtitle
             className="mb-2 text-muted"
