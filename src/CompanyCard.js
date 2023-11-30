@@ -1,6 +1,7 @@
 
 
 import { Card,CardBody,CardTitle,CardSubtitle, CardText,Button } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
 
 function CompanyCard ({company}){
@@ -11,7 +12,8 @@ function CompanyCard ({company}){
       >
         <CardBody>
           <CardTitle tag="h5">
-            <a href={`companies/${company.handle}`}>{company.name}</a>
+            <NavLink to={`./${company.handle}`}>{company.name}</NavLink>
+            {/* <a href={`companies/${company.handle}`}>{company.name}</a> */}
           </CardTitle>
           <CardSubtitle
             className="mb-2 text-muted"

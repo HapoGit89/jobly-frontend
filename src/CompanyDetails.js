@@ -5,7 +5,7 @@ import JobCard from "./JobCard"
 import "./CompanyDetails.css"
 
 
-function CompanyDetails(){
+function CompanyDetails({user}){
     const {handle} = useParams()
     const [data, setData] = useState(null)
     console.log(data)
@@ -18,7 +18,7 @@ function CompanyDetails(){
             
     }, [])
 
-    if(data){  return (
+    if(data && user.token){  return (
         <div className="CompanyDetails"> 
             <div className="companyInfo">
             <h1>
@@ -34,6 +34,13 @@ function CompanyDetails(){
        
 
     )}
+    else{
+        return (
+          <div>
+            <h1>Please log in to see this page</h1>
+          </div>
+        )
+      }
   
 }
 

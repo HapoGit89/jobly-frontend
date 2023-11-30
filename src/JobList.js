@@ -5,7 +5,7 @@ import "./JobList.css"
 import SearchForm from "./SearchForm"
 
 
-function JobList(){
+function JobList({user}){
     const [jobs, setJobs] = useState([])
     let isLoading = true
 
@@ -31,7 +31,7 @@ function JobList(){
 
     
 
-
+    if(user.token){
     return(
 
         <div className="JobList">
@@ -39,6 +39,14 @@ function JobList(){
           {jobs.map(el=>(<div className="JobCard"><JobCard job={el}/></div>))}
         </div>
     )
+    }
+    else{
+      return (
+        <div>
+          <h1>Please log in to see this page</h1>
+        </div>
+      )
+    }
 
 }
 

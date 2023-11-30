@@ -4,7 +4,7 @@ import CompanyCard from "./CompanyCard"
 import "./CompanyList.css"
 import SearchForm from "./SearchForm"
 
-function CompanyList(){
+function CompanyList({user}){
     const [companies, setCompanies] = useState([])
     let isLoading = true
 
@@ -30,14 +30,21 @@ function CompanyList(){
 
     
 
-
+    if (user.token){
     return(
 
         <div className="CompanyList">
             <SearchForm searchFunc={searchCompanies}/>
           {companies.map(el=>(<div className="CompanyCard"><CompanyCard company={el}/></div>))}
         </div>
-    )
+    )}
+    else{
+      return (
+        <div>
+          <h1>Please log in to see this page</h1>
+        </div>
+      )
+    }
 
 }
 
