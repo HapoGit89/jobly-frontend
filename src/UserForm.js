@@ -1,8 +1,12 @@
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { JoblyApi } from "./api";
+import { useParams } from "react-router-dom";
 
-function UserForm (){
+function UserForm ({userdata, user}){
   const [formData, setFormData] = useState("")
+  
+
 
 
   const handleChange = e => {
@@ -17,6 +21,8 @@ function UserForm (){
       console.log(formData)
       setFormData("")
   }
+
+  if (user.token){
     return(
         <Form onSubmit={handleSubmit}>
            <FormGroup>
@@ -31,7 +37,7 @@ function UserForm (){
       name="username"
       placeholder="username"
       type="text"
-      value = {formData.username || ""}
+      value = {formData.username || userdata.user.username}
       onChange={handleChange}
     />
   </FormGroup>
@@ -47,7 +53,7 @@ function UserForm (){
       name="firstname"
       placeholder="First Name"
       type="text"
-      value = {formData.firstname || ""}
+      value = {formData.firstname || userdata.user.firstName}
       onChange={handleChange}
     />
   </FormGroup>
@@ -63,7 +69,7 @@ function UserForm (){
       name="lastname"
       placeholder="Last Name"
       type="text"
-      value = {formData.lastname || ""}
+      value = {formData.lastname || userdata.user.lastName}
       onChange={handleChange}
     />
   </FormGroup>
@@ -79,7 +85,7 @@ function UserForm (){
       name="email"
       placeholder="Email"
       type="email"
-      value = {formData.email || ""}
+      value = {formData.email || userdata.user.email}
       onChange={handleChange}
     />
   </FormGroup>
@@ -92,6 +98,13 @@ function UserForm (){
 </Form>
         
     )
+  }
+
+  else {
+    return (
+      <h1>Sorry, you must be logged in to see this</h1>
+    )
+  }
 }
 
 export default UserForm

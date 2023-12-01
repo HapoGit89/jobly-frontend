@@ -4,7 +4,7 @@ import { Navbar, Nav, NavItem } from "reactstrap";
 import "./MyNavBar.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function MyNavBar({user}) {
+function MyNavBar({user, logOut}) {
 
   // added NavLink for Drinks Route and for Add Snacks/Drinks Route
 
@@ -24,7 +24,10 @@ function MyNavBar({user}) {
             <NavLink to="/jobs">Jobs</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/user">Profile</NavLink>
+            <NavLink to={`user/${user.username}`}>Profile</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/" onClick={logOut} reloadDocument>Log Out {user.username}</NavLink>
           </NavItem>
         </Nav>
       </Navbar>
