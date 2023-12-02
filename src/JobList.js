@@ -5,7 +5,7 @@ import "./JobList.css"
 import SearchForm from "./SearchForm"
 
 
-function JobList({user}){
+function JobList({user, applyJob}){
     const [jobs, setJobs] = useState([])
     let isLoading = true
 
@@ -36,7 +36,7 @@ function JobList({user}){
 
         <div className="JobList">
           <SearchForm searchFunc={searchJobs}/>
-          {jobs.map(el=>(<div className="JobCard"><JobCard job={el}/></div>))}
+          {jobs.map((el,idx)=>(<div className="JobCard" key={idx}><JobCard job={el} user={user} applyJob={applyJob}/></div>))}
         </div>
     )
     }

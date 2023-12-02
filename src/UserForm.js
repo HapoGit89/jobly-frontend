@@ -20,6 +20,9 @@ function UserForm ({userdata, patchUser}){
     }
   const handleSubmit = (e)=>{
     e.preventDefault()
+    if(!formData){
+      return
+    }
     patchUser(formData)
     setFormData("")
   }

@@ -64,6 +64,20 @@ function App() {
 
   }
 
+  const applyJob = async (jobId)=>{
+    console.log(jobId)
+    try{
+    const res = await JoblyApi.ApplyForJob(user.username, jobId)
+    if (res.applied){
+      alert(`You just applied for Job ${res.applied}`)
+      getUser(user.username)
+    }
+    }
+    catch(e){
+      alert(`Oops something went wrong!`)
+    }
+  }
+
 
   return (
     <div className="App">
@@ -71,7 +85,7 @@ function App() {
         <MyNavBar user={user} logOut={logOut}/>
         <Routes>
           <Route exact path="/companies" element={<CompanyList user={user}/>}></Route>    
-          <Route exact path="/jobs" element={<JobList user={user}/>}></Route>  
+          <Route exact path="/jobs" element={<JobList user={user} applyJob={applyJob}/>}></Route>  
           <Route exact path="/companies/:handle" element={<CompanyDetails user={user}/>}></Route>
           <Route exact path="/login" element={<LoginForm logIn={logIn}/>}></Route>   
           <Route exact path="/signup" element={<SignUpForm logIn={logIn}/>}></Route> 

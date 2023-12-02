@@ -107,6 +107,16 @@ static async patchUser(username,data){
   }
 }
 
+static async ApplyForJob(username,jobId){
+  try{
+    let res = await this.request(`users/${username}/jobs/${jobId}`,{},"post")
+    return res
+  }
+  catch(e){
+    return e
+  }
+}
+
 }
 
 // for now, put token ("testuser" / "password" on class)
