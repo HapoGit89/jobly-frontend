@@ -16,23 +16,19 @@ import { JoblyApi } from './api';
 
 
 
+
 function App() {
   const [user, setUser] = useState({})
-  const [userdata, setUserData] = useState({})
 
   const getUser = async(username)=>{
     const res = await JoblyApi.getUser(username)
-    setUserData(res)   
+    setUser({...res.user, token: JoblyApi.token})   
   }
 
 
   useEffect(()=>{
     let username = localStorage.getItem("username")
     let token = localStorage.getItem("token")
-    setUser({"token": token, "username": username})
-
-    
-
     if (username && token){
       JoblyApi.token = token
       getUser(username)
@@ -42,21 +38,29 @@ function App() {
   }
   },[])
  
-
   const logIn = (data)=>{
     console.log(data)
     localStorage.setItem("username", data.username)
     localStorage.setItem("token", data.token)
     JoblyApi.token = data.token
-    setUser({username: data.username, token: data.token})
     getUser(data.username)
     
    
   }
-
   const logOut = ()=>{
     localStorage.clear()
-    
+  }
+
+  const patchUser= async(data)=>{
+    console.log(data)
+    const res = await JoblyApi.patchUser(user.username, data)
+    if (res.user.username){
+      alert (`Saved new Details for ${res.user.username}`)
+      getUser(res.user.username)
+    }
+    else{
+      alert(`Something went wrong please try again!`)
+    }
 
   }
 
@@ -71,7 +75,7 @@ function App() {
           <Route exact path="/companies/:handle" element={<CompanyDetails user={user}/>}></Route>
           <Route exact path="/login" element={<LoginForm logIn={logIn}/>}></Route>   
           <Route exact path="/signup" element={<SignUpForm logIn={logIn}/>}></Route> 
-          <Route exact path="/user/:username" element={<UserForm userdata={userdata} user={user}/>}></Route> 
+          <Route exact path="/user/:username" element={<UserForm userdata={user} patchUser={patchUser}/>}></Route> 
           <Route exact path="/" element={<Home user={user}/>}></Route>    
         </Routes>
         

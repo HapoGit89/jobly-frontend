@@ -1,0 +1,13 @@
+.LogInForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:10vh;
+    margin-left: 50vh;
+    width: 80vh;
+
+   
+   
+
+}
+

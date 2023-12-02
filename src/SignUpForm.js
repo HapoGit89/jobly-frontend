@@ -2,6 +2,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { useState } from "react";
 import { JoblyApi } from "./api";
 import {useNavigate} from "react-router-dom"
+import "./SignUpForm.css"
 
 function SignUpForm ({logIn}){
   const [formData, setFormData] = useState("")
@@ -36,13 +37,15 @@ function SignUpForm ({logIn}){
   }
 
     return(
-        <Form onSubmit={handleSubmit}>
+      <div className="SignUpForm">
+        <h1>Sign Up For Jobly:</h1>
+        <Form  onSubmit={handleSubmit}>
            <FormGroup>
     <Label
       for="userName"
-      hidden
+     
     >
-      Username
+      Username:
     </Label>
     <Input
       id="userName"
@@ -56,11 +59,12 @@ function SignUpForm ({logIn}){
   <FormGroup>
     <Label
       for="firstName"
-      hidden
+      
     >
-      First Name
+      First Name:
     </Label>
     <Input
+    className="Input"
       id="firstName"
       name="firstName"
       placeholder="First Name"
@@ -72,9 +76,9 @@ function SignUpForm ({logIn}){
   <FormGroup>
     <Label
       for="lastName"
-      hidden
+      
     >
-      Last Name
+      Last Name:
     </Label>
     <Input
       id="lastName"
@@ -88,9 +92,9 @@ function SignUpForm ({logIn}){
   <FormGroup>
     <Label
       for="exampleEmail"
-      hidden
+  
     >
-      Email
+      Email:
     </Label>
     <Input
       id="exampleEmail"
@@ -105,9 +109,9 @@ function SignUpForm ({logIn}){
   <FormGroup>
     <Label
       for="examplePassword"
-      hidden
+     
     >
-      Password
+      Password:
     </Label>
     <Input
       id="examplePassword"
@@ -123,6 +127,7 @@ function SignUpForm ({logIn}){
     Submit
   </Button>
 </Form>
+</div>
         
     )
 }

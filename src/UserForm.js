@@ -2,9 +2,11 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { useState, useEffect } from "react";
 import { JoblyApi } from "./api";
 import { useParams } from "react-router-dom";
+import "./UserForm.css"
 
-function UserForm ({userdata, user}){
+function UserForm ({userdata, patchUser}){
   const [formData, setFormData] = useState("")
+  const {username} = useParams()
   
 
 
@@ -18,74 +20,61 @@ function UserForm ({userdata, user}){
     }
   const handleSubmit = (e)=>{
     e.preventDefault()
-      console.log(formData)
-      setFormData("")
+    patchUser(formData)
+    setFormData("")
   }
 
-  if (user.token){
+  if (userdata.token && userdata.username == username){
     return(
+      <div className ="UserForm">
+        <h1>Details for {userdata.username}</h1>
         <Form onSubmit={handleSubmit}>
-           <FormGroup>
-    <Label
-      for="userName"
-      hidden
-    >
-      Username
-    </Label>
-    <Input
-      id="userName"
-      name="username"
-      placeholder="username"
-      type="text"
-      value = {formData.username || userdata.user.username}
-      onChange={handleChange}
-    />
-  </FormGroup>
+    
   <FormGroup>
     <Label
       for="firstName"
-      hidden
+     
     >
-      First Name
+      First Name:
     </Label>
     <Input
       id="firstName"
-      name="firstname"
+      name="firstName"
       placeholder="First Name"
       type="text"
-      value = {formData.firstname || userdata.user.firstName}
+      value = {formData.firstName || userdata.firstName}
       onChange={handleChange}
     />
   </FormGroup>
   <FormGroup>
     <Label
       for="lastName"
-      hidden
+     
     >
-      Last Name
+      Last Name:
     </Label>
     <Input
       id="lastName"
-      name="lastname"
+      name="lastName"
       placeholder="Last Name"
       type="text"
-      value = {formData.lastname || userdata.user.lastName}
+      value = {formData.lastName || userdata.lastName}
       onChange={handleChange}
     />
   </FormGroup>
   <FormGroup>
     <Label
       for="exampleEmail"
-      hidden
+      
     >
-      Email
+      Email:
     </Label>
     <Input
       id="exampleEmail"
       name="email"
       placeholder="Email"
       type="email"
-      value = {formData.email || userdata.user.email}
+      value = {formData.email || userdata.email}
       onChange={handleChange}
     />
   </FormGroup>
@@ -96,6 +85,7 @@ function UserForm ({userdata, user}){
     Save Changes
   </Button>
 </Form>
+</div>
         
     )
   }

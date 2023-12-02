@@ -89,8 +89,17 @@ export class JoblyApi {
 
 static async getUser(username){
   try{
-    console.log("hi this is the api")
     let res = await this.request(`users/${username}`)
+    return res
+  }
+  catch(e){
+    return e
+  }
+}
+
+static async patchUser(username,data){
+  try{
+    let res = await this.request(`users/${username}`,{...data}, "patch")
     return res
   }
   catch(e){

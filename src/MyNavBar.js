@@ -27,7 +27,7 @@ function MyNavBar({user, logOut}) {
             <NavLink to={`user/${user.username}`}>Profile</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/" onClick={logOut} reloadDocument>Log Out {user.username}</NavLink>
+            <NavLink to="/" onClick={logOut} reloadDocument>Log Out</NavLink>
           </NavItem>
         </Nav>
       </Navbar>

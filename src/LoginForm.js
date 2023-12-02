@@ -2,6 +2,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { useState } from "react";
 import { JoblyApi } from "./api";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.css"
 
 function LoginForm ({logIn}){
     const [formData, setFormData] = useState("")
@@ -37,6 +38,8 @@ function LoginForm ({logIn}){
     }
 
     return(
+      <div className="LogInForm">
+        <h1>Login:</h1>
         <Form onSubmit={handleSubmit}>
   <FormGroup>
     <Label
@@ -76,6 +79,7 @@ function LoginForm ({logIn}){
     Submit
   </Button>
 </Form>
+</div>
         
     )
 }
