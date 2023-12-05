@@ -1,31 +1,25 @@
 
 import './App.css';
 import {React, useState, useEffect} from "react"
-import CompanyList from './CompanyList';
-import JobList from './JobList';
-import MyNavBar from './MyNavBar';
+import CompanyList from './Components/CompanyList/CompanyList';
+import JobList from './Components/JobList/JobList';
+import MyNavBar from './Components/NavBar/MyNavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CompanyDetails from './CompanyDetails';
+import CompanyDetails from './Components/CompanyDetails/CompanyDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
-import UserForm from './UserForm';
-import Home from './Home';
+import LoginForm from './Components/LoginForm/LoginForm';
+import SignUpForm from './Components/SignUpForm/SignUpForm';
+import UserForm from './Components/UserForm/UserForm';
+import Home from './Components/Home/Home';
 import { JoblyApi } from './api';
-
-
-
+import userContext from './userContext';
 
 
 function App() {
   const [user, setUser] = useState({})
 
-  const getUser = async(username)=>{
-    const res = await JoblyApi.getUser(username)
-    setUser({...res.user, token: JoblyApi.token})   
-  }
 
-
+  // catch userdata and set API Token when App mounts, cleanUp resets Api token
   useEffect(()=>{
     let username = localStorage.getItem("username")
     let token = localStorage.getItem("token")
@@ -37,20 +31,31 @@ function App() {
       JoblyApi.token=""
   }
   },[])
- 
+
+
+  // gets userdata for given username and stores it in State
+  const getUser = async(username)=>{
+    const res = await JoblyApi.getUser(username)
+    setUser({...res.user, token: JoblyApi.token})   
+  }
+
+
+  // User Login leads to localStorage Update, Api Token Update and State Update
   const logIn = (data)=>{
     console.log(data)
     localStorage.setItem("username", data.username)
     localStorage.setItem("token", data.token)
     JoblyApi.token = data.token
     getUser(data.username)
-    
-   
-  }
-  const logOut = ()=>{
-    localStorage.clear()
   }
 
+  // clear localStorage when Logout and clear Api Token
+  const logOut = ()=>{
+    localStorage.clear()
+    JoblyApi.token = ""
+  }
+
+  // Update Userdata via JoblyApi.patchUser func
   const patchUser= async(data)=>{
     console.log(data)
     const res = await JoblyApi.patchUser(user.username, data)
@@ -61,9 +66,9 @@ function App() {
     else{
       alert(`Something went wrong please try again!`)
     }
-
   }
 
+  // Apply current user to given JobId
   const applyJob = async (jobId)=>{
     console.log(jobId)
     try{
@@ -81,19 +86,20 @@ function App() {
 
   return (
     <div className="App">
+      <userContext.Provider value={user}>
    <BrowserRouter>
         <MyNavBar user={user} logOut={logOut}/>
         <Routes>
-          <Route exact path="/companies" element={<CompanyList user={user}/>}></Route>    
-          <Route exact path="/jobs" element={<JobList user={user} applyJob={applyJob}/>}></Route>  
-          <Route exact path="/companies/:handle" element={<CompanyDetails user={user}/>}></Route>
+          <Route exact path="/companies" element={<CompanyList/>}></Route>    
+          <Route exact path="/jobs" element={<JobList applyJob={applyJob}/>}></Route>  
+          <Route exact path="/companies/:handle" element={<CompanyDetails applyJob={applyJob}/>}></Route>
           <Route exact path="/login" element={<LoginForm logIn={logIn}/>}></Route>   
           <Route exact path="/signup" element={<SignUpForm logIn={logIn}/>}></Route> 
-          <Route exact path="/user/:username" element={<UserForm userdata={user} patchUser={patchUser}/>}></Route> 
-          <Route exact path="/" element={<Home user={user}/>}></Route>    
+          <Route exact path="/user/:username" element={<UserForm patchUser={patchUser}/>}></Route> 
+          <Route exact path="/" element={<Home/>}></Route>    
         </Routes>
-        
         </BrowserRouter>
+        </userContext.Provider>
     </div>
   );
 }

@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 
 
 function CompanyCard ({company}){
+  // user reactstrap Card component to render company data
+  
     return (<Card
         style={{
           width: '120vh'

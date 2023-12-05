@@ -1,13 +1,15 @@
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { useState } from "react";
-import { JoblyApi } from "./api";
+import { JoblyApi } from "../../api";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css"
 
 function LoginForm ({logIn}){
+  // React controlled Form for Userlogin
     const [formData, setFormData] = useState("")
     const navigate = useNavigate()
 
+    // Login in db an login in app via login()
     const Login = async()=>{
       let res = await JoblyApi.Login(formData)
       if (res && res.token){
@@ -23,7 +25,6 @@ function LoginForm ({logIn}){
 
     }
 
-
     const handleChange = e => {
         const { name, value } = e.target;
         setFormData(fData => ({
@@ -31,6 +32,7 @@ function LoginForm ({logIn}){
           [name]: value
         }));
       }
+
     const handleSubmit = (e)=>{
       e.preventDefault()
         Login()
@@ -38,13 +40,12 @@ function LoginForm ({logIn}){
     }
 
     return(
-      <div className="LogInForm">
+    <div className="LogInForm">
         <h1>Login:</h1>
         <Form onSubmit={handleSubmit}>
   <FormGroup>
     <Label
       for="Username"
-      
     >
       Username
     </Label>

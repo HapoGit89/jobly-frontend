@@ -1,12 +1,17 @@
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
-import { useState } from "react";
-import { JoblyApi } from "./api";
+import { useState,useContext } from "react";
+import { JoblyApi } from "../../api";
 import {useNavigate} from "react-router-dom"
 import "./SignUpForm.css"
+import userContext from "../../userContext";
 
 function SignUpForm ({logIn}){
+  // React controlled Form for User Login
   const [formData, setFormData] = useState("")
   const navigate = useNavigate()
+  const user = useContext(userContext)
+
+  // Register with JoblyAPI and Login in app via login()
   const Register = async()=> {
     let res = await JoblyApi.SignUp(formData)
     console.log(res)
@@ -19,7 +24,6 @@ function SignUpForm ({logIn}){
       console.log(res)
       alert (`something went wrong`)
     }
-
   }
 
 
@@ -35,7 +39,7 @@ function SignUpForm ({logIn}){
       Register()
       
   }
-
+    if(!user.token){
     return(
       <div className="SignUpForm">
         <h1>Sign Up For Jobly:</h1>
@@ -129,7 +133,15 @@ function SignUpForm ({logIn}){
 </Form>
 </div>
         
-    )
+    )}
+
+    else {
+      return(
+        <div>
+          <h1>Please log out if you want to register a new user</h1>
+        </div>
+      )
+    }
 }
 
 export default SignUpForm

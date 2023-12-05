@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyNavBar({user, logOut}) {
 
-  // added NavLink for Drinks Route and for Add Snacks/Drinks Route
+  // Navbar for App
 
 
   if(user.token){  return (
@@ -15,7 +15,6 @@ function MyNavBar({user, logOut}) {
         <NavLink exact to="/" className="NavbarBrand">
           Jobly
         </NavLink>
-
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink to="/companies">Companies</NavLink>

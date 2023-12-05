@@ -2,6 +2,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { useState } from "react"
 
 function SearchForm ({searchFunc}) {
+  //React controlled Form for search in Joblist and CompanyList
     const [formData, setFormData] = useState("")
 
 

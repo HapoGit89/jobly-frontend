@@ -1,12 +1,15 @@
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
-import { useState, useEffect } from "react";
-import { JoblyApi } from "./api";
+import { useState, useContext } from "react";
+import { JoblyApi } from "../../api";
 import { useParams } from "react-router-dom";
 import "./UserForm.css"
+import userContext from "../../userContext";
 
-function UserForm ({userdata, patchUser}){
+function UserForm ({patchUser}){
+  // React controlled Form for updating UserData
   const [formData, setFormData] = useState("")
   const {username} = useParams()
+  const userdata = useContext(userContext)
   
 
 
@@ -23,7 +26,7 @@ function UserForm ({userdata, patchUser}){
     if(!formData){
       return
     }
-    patchUser(formData)
+    patchUser(formData) // func located in App.js
     setFormData("")
   }
 
