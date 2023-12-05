@@ -7,7 +7,7 @@ function Home (){
     // when logged in and Login/Signin Prompt when logged out
     const user = useContext(userContext)
 
-    if (user.token)
+    if (user && user.token)
     return (
     <div className="WelcomeMessage"> 
          <h1>Welcome {user.username}, you can find jobs and new opportunities here, have fun!</h1>
