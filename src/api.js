@@ -28,7 +28,8 @@ export class JoblyApi {
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
+      
+      return err
       // let message = err.response.data.error.message;
       // throw Array.isArray(message) ? message : [message];
     }
@@ -72,10 +73,12 @@ export class JoblyApi {
   }
 
   static async SignUp(data){
-    try{let res = await this.request(`auth/register`, {...data}, "post")
-    return res}
+    try{
+      let res = await this.request(`auth/register`, {...data}, "post")
+      return res
+      }
     catch(e){
-      return e
+      return (e)
     }
   }
 
@@ -83,7 +86,7 @@ export class JoblyApi {
     try{let res = await this.request(`auth/token`, {...data}, "post")
     return res}
     catch(e){
-      return e
+      return (e)
     }
 }
 

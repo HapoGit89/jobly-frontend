@@ -4,15 +4,26 @@ import { JoblyApi } from "../../api";
 import { useParams } from "react-router-dom";
 import "./UserForm.css"
 import userContext from "../../userContext";
+import { handleError } from "./HandlePatchErrors";
 
-function UserForm ({patchUser}){
+
+function UserForm ({getUser}){
   // React controlled Form for updating UserData
   const [formData, setFormData] = useState("")
   const {username} = useParams()
   const userdata = useContext(userContext)
   
-
-
+    // Update Userdata via JoblyApi.patchUser func
+  const patchUser= async(data)=>{
+    const res = await JoblyApi.patchUser(userdata.username, data)
+    if (res.user && res.user.username){
+      alert (`Saved new Details for ${res.user.username}`)
+      getUser(res.user.username)
+    }
+    else{
+      handleError(res.response.data)
+    }
+  }
 
   const handleChange = e => {
       const { name, value } = e.target;
@@ -48,7 +59,7 @@ function UserForm ({patchUser}){
       name="firstName"
       placeholder="First Name"
       type="text"
-      value = {formData.firstName || userdata.firstName}
+      value = {formData.firstName || userdata.firstName }
       onChange={handleChange}
     />
   </FormGroup>

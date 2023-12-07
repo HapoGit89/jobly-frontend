@@ -42,7 +42,6 @@ function App() {
 
   // User Login leads to localStorage Update, Api Token Update and State Update
   const logIn = (data)=>{
-    console.log(data)
     localStorage.setItem("username", data.username)
     localStorage.setItem("token", data.token)
     JoblyApi.token = data.token
@@ -55,22 +54,10 @@ function App() {
     JoblyApi.token = ""
   }
 
-  // Update Userdata via JoblyApi.patchUser func
-  const patchUser= async(data)=>{
-    console.log(data)
-    const res = await JoblyApi.patchUser(user.username, data)
-    if (res.user.username){
-      alert (`Saved new Details for ${res.user.username}`)
-      getUser(res.user.username)
-    }
-    else{
-      alert(`Something went wrong please try again!`)
-    }
-  }
+
 
   // Apply current user to given JobId
   const applyJob = async (jobId)=>{
-    console.log(jobId)
     try{
     const res = await JoblyApi.ApplyForJob(user.username, jobId)
     if (res.applied){
@@ -95,7 +82,7 @@ function App() {
           <Route exact path="/companies/:handle" element={<CompanyDetails applyJob={applyJob}/>}></Route>
           <Route exact path="/login" element={<LoginForm logIn={logIn}/>}></Route>   
           <Route exact path="/signup" element={<SignUpForm logIn={logIn}/>}></Route> 
-          <Route exact path="/user/:username" element={<UserForm patchUser={patchUser}/>}></Route> 
+          <Route exact path="/user/:username" element={<UserForm getUser={getUser}/>}></Route> 
           <Route exact path="/" element={<Home/>}></Route>    
         </Routes>
         </BrowserRouter>

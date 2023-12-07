@@ -38,12 +38,12 @@ function JobCard ({job, applyJob}){
             <ListGroup >
               <div className="JobDetails">
               <ListGroupItem>
-              Salary:
-              {job.salary}
+              Salary: 
+              {`${ job.salary|| "N/A"}` || " N/A"}
               </ListGroupItem>
               <ListGroupItem>
               Equity:
-            {job.equity}
+            {`${ job.equity}` || " N/A"}
               </ListGroupItem>
               </div>
             </ListGroup> 

@@ -4,6 +4,7 @@ import { JoblyApi } from "../../api";
 import {useNavigate} from "react-router-dom"
 import "./SignUpForm.css"
 import userContext from "../../userContext";
+import { handleError } from "./HandleSignUpErrors";
 
 function SignUpForm ({logIn}){
   // React controlled Form for User Login
@@ -14,15 +15,13 @@ function SignUpForm ({logIn}){
   // Register with JoblyAPI and Login in app via login()
   const Register = async()=> {
     let res = await JoblyApi.SignUp(formData)
-    console.log(res)
     if (res && res.token){
       alert(`Registered as ${formData.username}`)
       logIn({username: formData.username, token: res.token})
       navigate("/")
     }
     else {
-      console.log(res)
-      alert (`something went wrong`)
+      handleError(res.response.data)
     }
   }
 
