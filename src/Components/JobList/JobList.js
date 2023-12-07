@@ -4,27 +4,13 @@ import JobCard from "../JobCard/JobCard"
 import "./JobList.css"
 import SearchForm from "../SearchForm/SearchForm"
 import userContext from "../../userContext"
+import useJobs from "../../Hooks/useJobs"
 
 
 function JobList({applyJob}){
-    const [jobs, setJobs] = useState([])
+    let {jobs, searchJobs, error} = useJobs()
     const user = useContext(userContext)
-   
 
-
-    useEffect(()=>{
-     const getJobs = async ()=>{
-        let res = await JoblyApi.getAllJobs() 
-        setJobs(res.jobs) 
-      }
-      getJobs()
-    }, [])
-
-    // use JoblyApi to search in db and update State
-    const searchJobs = async (title)=>{
-                      let res = await JoblyApi.findAllJobs(title)
-                      setJobs(res.jobs)
-      }
 
     if(user.token){
     return(

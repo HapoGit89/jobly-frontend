@@ -10,28 +10,6 @@ function CompanyList(){
   const user = useContext(userContext)
   let {companies, searchCompanies, error} = useCompanies()
 
-  // let companies = data.companies
-  // let error = data.error
-  // let searchCompanies = data.searchCompanies
-  // const [companies, setCompanies] = useState([])
-    
-
-
-  // // get company list from JoblyApi and update State
-  //   useEffect(()=>{
-  //    const getCompanies = async ()=>{
-  //       let res = await JoblyApi.getAllCompanies()   
-  //       setCompanies(res.companies) 
-  //     }
-  //     getCompanies()
-  //   }, [])
-
-  //   // Search function triggered by searchForm
-  //   const searchCompanies = async (name)=>{
-  //     let res = await JoblyApi.findAllCompanies(name)
-  //     setCompanies(res.companies)
-  //   }
-
     if (error){
       return (
         <div>
