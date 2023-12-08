@@ -12,7 +12,7 @@ function MyNavBar({user, logOut}) {
   if(user.token){  return (
     <div>
       <Navbar expand="md">
-        <NavLink exact to="/" className="NavbarBrand">
+        <NavLink to="/" className="NavbarBrand">
           Jobly
         </NavLink>
         <Nav className="ml-auto" navbar>
