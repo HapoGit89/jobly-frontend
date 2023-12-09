@@ -4,7 +4,7 @@ import { JoblyApi } from "../../api";
 import { useParams } from "react-router-dom";
 import "./UserForm.css"
 import userContext from "../../userContext";
-import { handleError } from "./HandlePatchErrors";
+import { handleError } from "./HandleSignUpErrors";
 
 
 function UserForm ({getUser}){
