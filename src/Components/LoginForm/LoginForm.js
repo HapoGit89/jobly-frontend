@@ -45,7 +45,7 @@ function LoginForm ({logIn}){
         <Form onSubmit={handleSubmit}>
   <FormGroup>
     <Label
-      for="Username"
+      for="userName"
     >
       Username
     </Label>

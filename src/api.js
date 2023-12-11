@@ -82,7 +82,7 @@ export class JoblyApi {
     }
   }
 
-  static async Login(data){
+  static async Login(data, callback){
     try{let res = await this.request(`auth/token`, {...data}, "post")
     return res}
     catch(e){
@@ -93,6 +93,16 @@ export class JoblyApi {
 static async getUser(username){
   try{
     let res = await this.request(`users/${username}`)
+    return res
+  }
+  catch(e){
+    return e
+  }
+}
+
+static async deleteUser(username){
+  try{
+    let res = await this.request(`users/${username}`,{}, "delete")
     return res
   }
   catch(e){

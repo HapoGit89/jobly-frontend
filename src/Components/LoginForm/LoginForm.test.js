@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import {  render , fireEvent, waitFor} from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-
+import {JoblyApi} from '../../api';
 import LoginForm from './LoginForm';
 
-// Smoke Test
 
+
+// Smoke Test
 it('renders without crashing', () => {
 render(
     <BrowserRouter>
@@ -25,6 +26,30 @@ it('matches Snapshot', () => {
     );
     expect(asFragment).toMatchSnapshot()
     });
+
+
+// Testing if Login Form works
+
+it('logs in user', async()=>{
+    const alertMock = jest.spyOn(window,'alert').mockImplementation(); 
+    const { getByLabelText, getByText} = render(
+        <BrowserRouter>
+            <LoginForm/>
+        </BrowserRouter>
+    );
+
+    const username = getByLabelText("Username")
+    const password = getByLabelText("Password")
+    const subbutton = getByText("Submit")
+    fireEvent.change(username, {target: {value: "Testuser"}})  
+    fireEvent.change(password, {target: {value: "test"}})
+     // these credentials are not registered, we just want to test the form, not the login func
+    fireEvent.click(subbutton)
+    await waitFor(()=>expect(alertMock).toHaveBeenCalled()) // checks if alert was called as result of form submit
+
+  
+})
+
     
 
 

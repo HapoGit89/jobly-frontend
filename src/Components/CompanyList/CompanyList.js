@@ -21,7 +21,7 @@ function CompanyList(){
     return(
         <div className="CompanyList">
             <SearchForm searchFunc={searchCompanies}/>
-          {companies.map(el=>(<div className="CompanyCard"><CompanyCard company={el}/></div>))}
+          {companies.map((el,id)=>(<div className="CompanyCard" key={id}><CompanyCard company={el}/></div>))}
         </div>
     )}
     else{
