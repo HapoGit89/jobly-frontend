@@ -2,7 +2,6 @@ import useCompanies from "./useCompanies";
 import { renderHook } from "@testing-library/react";
 import { JoblyApi } from "../api";
 import {waitFor } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
 import axios from "axios";
 
 
