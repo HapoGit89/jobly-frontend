@@ -8,3 +8,13 @@ render(<CompanyDetails applyJob={()=> {return ("Hello")} }/>);
 });
 
 
+// Snapshot Test
+
+it('matches Snapshot', () => {
+    const {asFragment} = render(<CompanyDetails applyJob={()=> {return ("Hello")} }/>);
+    expect(asFragment).toMatchSnapshot()
+    });
+
+
+
+

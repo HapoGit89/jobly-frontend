@@ -15,3 +15,16 @@ render(
 });
 
 
+// Snapshot Test
+
+it('matches Snapshot', () => {
+   const {asFragment} = render(
+        <BrowserRouter>
+            <LoginForm/>
+        </BrowserRouter>
+    );
+    expect(asFragment).toMatchSnapshot()
+    });
+    
+
+

@@ -11,3 +11,12 @@ render(<SearchForm searchFunc={()=>{return "Search"}}/>
 });
 
 
+// Snapshot Test
+
+it('matches Snapshot', () => {
+      const {asFragment} = render(<SearchForm searchFunc={()=>{return "Search"}}/>)
+      expect(asFragment).toMatchSnapshot()
+      });
+      
+
+

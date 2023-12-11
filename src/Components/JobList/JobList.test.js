@@ -10,8 +10,14 @@ it('renders without crashing', () => {
 render(<userContext.Provider value={user}>
       <JobList applyJob={()=>{return}}/>
 </userContext.Provider>
-  
 );
 });
 
+it('matches Snapshot', () => {
+    const user = {username: "Hannes", token: "asgahgshgs"}
+    const {asFragment}=render(<userContext.Provider value={user}>
+      <JobList applyJob={()=>{return}}/>
+        </userContext.Provider>
+);expect(asFragment).toMatchSnapshot()
+});
 

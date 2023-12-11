@@ -7,4 +7,12 @@ it('renders without crashing', () => {
 render(<Home />);
 });
 
+// Snapshot Test
+
+it('matches Snapshot', () => {
+    const {asFragment} = render(<Home />);
+    expect(asFragment).toMatchSnapshot()
+    });
+    
+
 
