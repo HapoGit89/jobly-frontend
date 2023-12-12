@@ -1,5 +1,3 @@
-
-
 import { Card,CardBody,CardTitle,CardSubtitle, CardText,Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
@@ -28,7 +26,6 @@ function CompanyCard ({company}){
       </Card>)
 
 }
-
 
 export default CompanyCard
 

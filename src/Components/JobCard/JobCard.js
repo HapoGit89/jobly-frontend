@@ -32,7 +32,7 @@ function JobCard ({job, applyJob}){
             tag="h6"
           >
             
-            {job.companyName && <NavLink to={`./${job.companyHandle}`}>`@${job.companyName}`</NavLink>}
+            {job.companyName && <NavLink to={`../companies/${job.companyHandle}`}>{`@${job.companyName}`}</NavLink>}
           </CardSubtitle>
           <CardText tag="h3">
             <ListGroup >

@@ -1,5 +1,4 @@
-import {React, useEffect,useState,useContext} from "react"
-import { JoblyApi } from "../../api"
+import {React, useContext} from "react"
 import CompanyCard from "../CompanyCard/CompanyCard"
 import "./CompanyList.css"
 import SearchForm from "../SearchForm/SearchForm"
@@ -17,6 +16,7 @@ function CompanyList(){
         </div>
       )
     }
+
     if (user.token){  //Route protection
     return(
         <div className="CompanyList">
@@ -24,6 +24,7 @@ function CompanyList(){
           {companies.map((el,id)=>(<div className="CompanyCard" key={id}><CompanyCard company={el}/></div>))}
         </div>
     )}
+
     else{
       return (
         <div>
@@ -31,7 +32,6 @@ function CompanyList(){
         </div>
       )
     }
-
 }
 
 export default CompanyList

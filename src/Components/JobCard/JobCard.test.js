@@ -16,7 +16,7 @@ const job = {
 
 it('renders without crashing', () => {
 	const user = {username: "Hannes", token: "ajhsjhsjhs", applications: []}
-render(<BrowserRouter>
+	render(<BrowserRouter>
 		<userContext.Provider value={user}>
 			<JobCard applyJob={()=>{return "Hello"}} job={job}/>
 		</userContext.Provider>
@@ -24,6 +24,7 @@ render(<BrowserRouter>
 
 });
 
+// Snapshot Test
 
 it('matches Snapshot', () => {
 	const user = {username: "Hannes", token: "ajhsjhsjhs", applications: []}

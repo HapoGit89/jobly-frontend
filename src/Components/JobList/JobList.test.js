@@ -7,9 +7,9 @@ import userContext from '../../userContext';
 
 it('renders without crashing', () => {
     const user = {username: "Hannes", token: "asgahgshgs"}
-render(<userContext.Provider value={user}>
+    render(<userContext.Provider value={user}>
       <JobList applyJob={()=>{return}}/>
-</userContext.Provider>
+    </userContext.Provider>
 );
 });
 
@@ -18,6 +18,7 @@ it('matches Snapshot', () => {
     const {asFragment}=render(<userContext.Provider value={user}>
       <JobList applyJob={()=>{return}}/>
         </userContext.Provider>
-);expect(asFragment).toMatchSnapshot()
+    );
+    expect(asFragment).toMatchSnapshot()
 });
 

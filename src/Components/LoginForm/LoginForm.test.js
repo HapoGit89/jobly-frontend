@@ -10,8 +10,7 @@ it('renders without crashing', () => {
 render(
     <BrowserRouter>
         <LoginForm/>
-    </BrowserRouter>
-   
+    </BrowserRouter>  
 );
 });
 

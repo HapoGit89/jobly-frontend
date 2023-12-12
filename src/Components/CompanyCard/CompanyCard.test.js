@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import CompanyCard from './CompanyCard';
 import { BrowserRouter } from 'react-router-dom';
 
-const company =     {
+const company = {
     "company": {
         "handle": "ayala-buchanan",
         "name": "Ayala-Buchanan",
@@ -82,7 +82,6 @@ it('matches snapshot', () => {
     const {asFragment}=render(<BrowserRouter>
     <CompanyCard company={company}/>
     </BrowserRouter>);
-
     expect(asFragment).toMatchSnapshot()
     });
 

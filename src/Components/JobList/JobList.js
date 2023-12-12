@@ -1,5 +1,5 @@
-import {React, useEffect,useState, useContext} from "react"
-import { JoblyApi } from "../../api"
+import {React, useContext} from "react"
+
 import JobCard from "../JobCard/JobCard"
 import "./JobList.css"
 import SearchForm from "../SearchForm/SearchForm"

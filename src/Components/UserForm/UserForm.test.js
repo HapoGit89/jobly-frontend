@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import App from '../../App';
+import { render} from '@testing-library/react';
 import UserForm from './UserForm';
 import userContext from '../../userContext';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,7 +11,7 @@ render(<BrowserRouter>
             <userContext.Provider value={user}>
             <UserForm getUser={()=>{return "User"}}/>
             </userContext.Provider>
-        </BrowserRouter>
+            </BrowserRouter>
       )
 });
 
@@ -24,7 +23,7 @@ it('matches Snapshot', () => {
             <userContext.Provider value={user}>
             <UserForm getUser={()=>{return "User"}}/>
             </userContext.Provider>
-        </BrowserRouter>
+            </BrowserRouter>
       )
     expect(asFragment).toMatchSnapshot()
 });

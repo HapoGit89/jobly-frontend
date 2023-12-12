@@ -33,6 +33,7 @@ function SignUpForm ({logIn}){
         [name]: value
       }));
     }
+
   const handleSubmit = (e)=>{
     e.preventDefault()
       Register()
@@ -44,10 +45,7 @@ function SignUpForm ({logIn}){
         <h1>Sign Up For Jobly:</h1>
         <Form  onSubmit={handleSubmit}>
            <FormGroup>
-    <Label
-      for="userName"
-     
-    >
+    <Label for="userName">
       Username:
     </Label>
     <Input
@@ -60,10 +58,7 @@ function SignUpForm ({logIn}){
     />
   </FormGroup>
   <FormGroup>
-    <Label
-      for="firstName"
-      
-    >
+    <Label for="firstName" >
       First Name:
     </Label>
     <Input
@@ -77,10 +72,7 @@ function SignUpForm ({logIn}){
     />
   </FormGroup>
   <FormGroup>
-    <Label
-      for="lastName"
-      
-    >
+    <Label for="lastName">
       Last Name:
     </Label>
     <Input
@@ -93,10 +85,7 @@ function SignUpForm ({logIn}){
     />
   </FormGroup>
   <FormGroup>
-    <Label
-      for="exampleEmail"
-  
-    >
+    <Label for="exampleEmail">
       Email:
     </Label>
     <Input
@@ -110,10 +99,7 @@ function SignUpForm ({logIn}){
   </FormGroup>
   {' '}
   <FormGroup>
-    <Label
-      for="examplePassword"
-     
-    >
+    <Label for="examplePassword" >
       Password:
     </Label>
     <Input

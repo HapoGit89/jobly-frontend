@@ -9,7 +9,7 @@ it('renders without crashing', () => {
 render(<BrowserRouter>
   <MyNavBar user={{username: "test", token: "asjhasjhajhsjhjhdj"}}logOut={()=>{return "logOut"}}/>
   </BrowserRouter>
-      )
+  )
 });
 
 // Snapshot Test
@@ -18,6 +18,6 @@ it('matches Snapshot', () => {
   const {asFragement} = render(<BrowserRouter>
     <MyNavBar user={{username: "test", token: "asjhasjhajhsjhjhdj"}}logOut={()=>{return "logOut"}}/>
     </BrowserRouter>)
-      expect(asFragement).toMatchSnapshot()
+    expect(asFragement).toMatchSnapshot()
   });
 

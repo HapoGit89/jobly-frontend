@@ -30,11 +30,9 @@ const companies = {
 
 it('renders without crashing', () => {
     const user = {username: "Hannes", token: "askakjskjskjs"}
-
-render(<userContext.Provider value={user}>
+    render(<userContext.Provider value={user}>
      <CompanyList />
-</userContext.Provider>
-   
+    </userContext.Provider>  
 );
 });
 
@@ -44,12 +42,11 @@ render(<userContext.Provider value={user}>
 
 it('matches Snapshot', async () => {
     const user = {username: "Hannes", token: "askakjskjskjs"}
-
-const {asFragment}=act(()=>{render(<userContext.Provider value={user}>
+    const {asFragment}=act(()=>{render(<userContext.Provider value={user}>
      <CompanyList />
-</userContext.Provider>)})
+    </userContext.Provider>)})
 
-expect(asFragment).toMatchSnapshot()
+    expect(asFragment).toMatchSnapshot()
 });
 
 
@@ -60,9 +57,9 @@ it('renders company details', async() => {
         useCompanies: ()=>({companies: comp})
     }))
     
-            const user = {username: "Hannes", token: "askakjskjskjs"}
-
-        const {getByText}=act(()=>{render(<userContext.Provider value={user}>
+    const user = {username: "Hannes", token: "askakjskjskjs"}
+    const {getByText}=act(()=>{render(
+            <userContext.Provider value={user}>
             <BrowserRouter>
             <CompanyList />
             </BrowserRouter>
@@ -79,10 +76,9 @@ it('shows search results', async()=>{
     const comp = companies
     jest.mock('../../Hooks/useCompanies',()=>({
         useCompanies: ()=>({companies: comp})
-
     }))
    
-   const {getByText}=act(()=>{render(<userContext.Provider value={user}>
+   act(()=>{render(<userContext.Provider value={user}>
         <BrowserRouter>
         <CompanyList />
         </BrowserRouter>
@@ -99,8 +95,6 @@ it('shows search results', async()=>{
         expect(screen.getByText("Arnold, Berger and Townsend")).toBeInTheDocument()
     })
 
-
-  
 })
 
 

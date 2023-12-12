@@ -47,7 +47,6 @@ function MyNavBar({user, logOut}) {
             <NavItem>
               <NavLink to="/signup">Signup</NavLink>
             </NavItem>
-           
           </Nav>
         </Navbar>
       </div>
