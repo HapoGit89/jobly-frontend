@@ -14,6 +14,7 @@ function SignUpForm ({logIn}){
 
   // Register with JoblyAPI and Login in app via login()
   const Register = async()=> {
+    
     let res = await JoblyApi.SignUp(formData)
     if (res && res.token){
       alert(`Registered as ${formData.username}`)
@@ -21,7 +22,7 @@ function SignUpForm ({logIn}){
       navigate("/")
     }
     else {
-      handleError(res.response.data)
+      handleError(res)
     }
   }
 

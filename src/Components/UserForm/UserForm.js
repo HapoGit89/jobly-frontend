@@ -21,7 +21,7 @@ function UserForm({ getUser }) {
       getUser(res.user.username)
     }
     else {
-      handleError(res.response.data)
+      handleError(res)
     }
   }
 
